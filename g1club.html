@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G1Club — Gestion de clubs sportifs | Hubyteck</title>
+<link rel="icon" href="./hubyteck-icon.ico">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./hubyteck.css">
+<style>:root{--brand:#3b82f6;--brand-soft:rgba(59,130,246,.15)}</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+  <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html#home" class="flex items-center gap-3">
+      <img src="./hubyteck-logo.png" alt="Hubyteck" class="h-10 w-auto">
+      <span class="display text-xl font-bold">Hubyteck</span>
+    </a>
+    <a href="index.html#projects" class="btn-ghost px-5 py-2.5 rounded-full text-sm">&larr; Réalisations</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="relative min-h-[85vh] flex items-center overflow-hidden grid-bg pt-28 pb-20">
+  <div class="blob" style="width:500px;height:500px;background:var(--brand);top:-120px;left:-100px"></div>
+  <div class="blob" style="width:400px;height:400px;background:var(--accent2);bottom:-120px;right:-60px"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center w-full">
+    <div class="reveal">
+      <span class="pill inline-block mb-6" style="background:var(--brand-soft);color:var(--brand);border-color:var(--brand-soft)">Plateforme de gestion sportive tout-en-un</span>
+      <h1 class="display text-5xl md:text-6xl font-bold leading-[1.05] mb-6">
+        Gérez votre club <span style="color:var(--brand)">comme un pro</span>
+      </h1>
+      <p class="text-lg text-[var(--muted)] leading-relaxed mb-8">
+        G1Club centralise la gestion de vos sportifs, coachs, entraînements et communications.
+        Une plateforme moderne, sécurisée et multi-clubs pour les clubs de football et sports collectifs.
+      </p>
+      <div class="flex flex-wrap gap-3 mb-10">
+        <span class="pill">Multi-clubs</span>
+        <span class="pill">Sécurisé</span>
+        <span class="pill">Football</span>
+      </div>
+      <div class="flex flex-wrap gap-4">
+        <a href="https://g1club.fr" target="_blank" rel="noopener" class="btn-primary px-7 py-3.5 rounded-full text-sm inline-flex items-center gap-2">Visiter le site officiel <span>&#8599;</span></a>
+        <a href="index.html#contact" class="btn-ghost px-7 py-3.5 rounded-full text-sm">Discuter d'un projet similaire</a>
+      </div>
+    </div>
+    <div class="reveal flex justify-center">
+      <div class="glass rounded-3xl p-10 relative overflow-hidden">
+        <div class="blob" style="width:260px;height:260px;background:var(--brand);top:-80px;right:-80px"></div>
+        <img src="./g1club-logo.png" alt="G1Club" class="relative z-10 max-h-72 w-auto mx-auto rounded-2xl" style="filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="max-w-5xl mx-auto px-6 py-16">
+  <div class="grid grid-cols-3 gap-6 text-center">
+    <div class="glass rounded-2xl p-8 reveal"><div class="stat-num grad-text text-4xl">500+</div><div class="text-sm text-[var(--muted)] mt-2">Clubs actifs</div></div>
+    <div class="glass rounded-2xl p-8 reveal"><div class="stat-num grad-text text-4xl">15 000+</div><div class="text-sm text-[var(--muted)] mt-2">Sportifs suivis</div></div>
+    <div class="glass rounded-2xl p-8 reveal"><div class="stat-num grad-text text-4xl">98%</div><div class="text-sm text-[var(--muted)] mt-2">Satisfaction</div></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="max-w-7xl mx-auto px-6 py-20">
+  <div class="reveal text-center mb-12">
+    <span class="tag">Fonctionnalités</span>
+    <h2 class="display text-3xl md:text-4xl font-bold mt-4">Tout ce dont votre club a besoin</h2>
+    <p class="text-[var(--muted)] max-w-2xl mx-auto mt-4">Une suite complète d'outils pensés pour simplifier la gestion quotidienne de votre club sportif.</p>
+  </div>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="glass rounded-2xl p-7 card-hover reveal"><div class="feature-icon mb-4" style="color:var(--brand)">👥</div><h3 class="font-semibold mb-2">Gestion des membres</h3><p class="text-sm text-[var(--muted)]">Sportifs, coachs et dirigeants pilotés depuis un tableau de bord centralisé, avec profils détaillés.</p></div>
+    <div class="glass rounded-2xl p-7 card-hover reveal"><div class="feature-icon mb-4" style="color:var(--brand)">📈</div><h3 class="font-semibold mb-2">Suivi des performances</h3><p class="text-sm text-[var(--muted)]">Évaluations, annotations et statistiques de progression pour chaque sportif. Identifiez les talents.</p></div>
+    <div class="glass rounded-2xl p-7 card-hover reveal"><div class="feature-icon mb-4" style="color:var(--brand)">📅</div><h3 class="font-semibold mb-2">Planning &amp; événements</h3><p class="text-sm text-[var(--muted)]">Entraînements, matchs et événements, créneaux horaires et gestion des présences.</p></div>
+    <div class="glass rounded-2xl p-7 card-hover reveal"><div class="feature-icon mb-4" style="color:var(--brand)">💬</div><h3 class="font-semibold mb-2">Messagerie interne</h3><p class="text-sm text-[var(--muted)]">Communication sécurisée entre coachs, sportifs et dirigeants, au sein de votre club.</p></div>
+    <div class="glass rounded-2xl p-7 card-hover reveal"><div class="feature-icon mb-4" style="color:var(--brand)">🪪</div><h3 class="font-semibold mb-2">Gestion des licences</h3><p class="text-sm text-[var(--muted)]">Créez, renouvelez et suivez les licences fédérales, avec alertes d'expiration et renouvellement en un clic.</p></div>
+    <div class="glass rounded-2xl p-7 card-hover reveal"><div class="feature-icon mb-4" style="color:var(--brand)">💳</div><h3 class="font-semibold mb-2">Suivi des paiements</h3><p class="text-sm text-[var(--muted)]">Paiements en plusieurs versements pour licences et stages, tableau de bord financier clair et historique.</p></div>
+    <div class="glass rounded-2xl p-7 card-hover reveal"><div class="feature-icon mb-4" style="color:var(--brand)">🎓</div><h3 class="font-semibold mb-2">Gestion des stages</h3><p class="text-sm text-[var(--muted)]">Stages payants : dates, horaires, lieu, inscriptions et échéanciers de paiement intégrés.</p></div>
+    <div class="glass rounded-2xl p-7 card-hover reveal"><div class="feature-icon mb-4" style="color:var(--brand)">📊</div><h3 class="font-semibold mb-2">Statistiques &amp; rapports</h3><p class="text-sm text-[var(--muted)]">Tableau de bord analytique : effectifs, présences, catégories actives et tendances en temps réel.</p></div>
+    <div class="glass rounded-2xl p-7 card-hover reveal"><div class="feature-icon mb-4" style="color:var(--brand)">🏢</div><h3 class="font-semibold mb-2">Multi-clubs &amp; isolation</h3><p class="text-sm text-[var(--muted)]">Architecture multi-tenant : chaque club dispose d'un espace totalement isolé et de données privées.</p></div>
+  </div>
+</section>
+
+<!-- FINANCE HIGHLIGHT -->
+<section class="max-w-7xl mx-auto px-6 py-16">
+  <div class="glass rounded-3xl p-10 md:p-12 reveal relative overflow-hidden">
+    <div class="blob" style="width:320px;height:320px;background:var(--brand);top:-120px;right:-100px"></div>
+    <div class="relative z-10">
+      <span class="pill inline-block mb-4" style="background:var(--brand-soft);color:var(--brand);border-color:var(--brand-soft)">Nouveau</span>
+      <h2 class="display text-2xl md:text-3xl font-bold mb-3">Gestion financière intégrée</h2>
+      <p class="text-[var(--muted)] max-w-2xl mb-8">Licences, stages, versements… tout le suivi financier de votre club en un seul endroit. Fini les tableurs Excel !</p>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="font-semibold mb-3">Licences fédérales</h3>
+          <ul class="space-y-2 text-sm text-[var(--muted)]">
+            <li class="flex gap-2"><span class="check" style="color:var(--brand)">✓</span> Alerte visuelle 30 jours avant expiration</li>
+            <li class="flex gap-2"><span class="check" style="color:var(--brand)">✓</span> Renouvellement en 1 clic (1er sept → 30 juin)</li>
+            <li class="flex gap-2"><span class="check" style="color:var(--brand)">✓</span> Paiement en 1 à 6 versements</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-3">Stages payants</h3>
+          <ul class="space-y-2 text-sm text-[var(--muted)]">
+            <li class="flex gap-2"><span class="check" style="color:var(--brand)">✓</span> Dates &amp; horaires précis, inscriptions par stage</li>
+            <li class="flex gap-2"><span class="check" style="color:var(--brand)">✓</span> Génération automatique des échéanciers</li>
+            <li class="flex gap-2"><span class="check" style="color:var(--brand)">✓</span> Alerte automatique des paiements en retard</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHO -->
+<section class="max-w-7xl mx-auto px-6 py-20">
+  <div class="reveal text-center mb-12">
+    <span class="tag">Pour qui ?</span>
+    <h2 class="display text-3xl md:text-4xl font-bold mt-4">Une plateforme pour tous les acteurs</h2>
+  </div>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="glass rounded-2xl p-7 card-hover reveal"><h3 class="font-semibold mb-3">Dirigeants de club</h3><p class="text-sm text-[var(--muted)]">Pilotez votre club depuis un tableau de bord complet : utilisateurs, catégories, suivi financier multi-versements et statistiques avancées.</p></div>
+    <div class="glass rounded-2xl p-7 card-hover reveal"><h3 class="font-semibold mb-3">Coachs &amp; entraîneurs</h3><p class="text-sm text-[var(--muted)]">Fiches sportifs détaillées, gestion des entraînements, suivi des présences et annotations d'évaluation.</p></div>
+    <div class="glass rounded-2xl p-7 card-hover reveal"><h3 class="font-semibold mb-3">Sportifs</h3><p class="text-sm text-[var(--muted)]">Espace personnel : historique des performances, planning des entraînements et messagerie avec le coach.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="max-w-7xl mx-auto px-6 py-20">
+  <div class="reveal text-center mb-12">
+    <span class="tag">Témoignages</span>
+    <h2 class="display text-3xl md:text-4xl font-bold mt-4">Ils nous font confiance</h2>
+  </div>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="glass rounded-2xl p-8 card-hover reveal">
+      <p class="text-[var(--muted)] leading-relaxed mb-6">« G1Club a transformé la gestion de notre club. En quelques clics, je visualise l'ensemble de nos effectifs et l'activité des coachs. Un gain de temps considérable ! »</p>
+      <div class="flex items-center gap-3"><span class="w-11 h-11 rounded-full flex items-center justify-center font-bold text-sm" style="background:linear-gradient(135deg,#3b82f6,#7c5cff)">M</span><div><div class="font-semibold text-sm">Marc Dupont</div><div class="text-xs text-[var(--muted)]">Président, FC Linas</div></div></div>
+    </div>
+    <div class="glass rounded-2xl p-8 card-hover reveal">
+      <p class="text-[var(--muted)] leading-relaxed mb-6">« La gestion des présences et les fiches sportifs sont excellentes. Je peux annoter les performances de chaque joueur directement après l'entraînement. »</p>
+      <div class="flex items-center gap-3"><span class="w-11 h-11 rounded-full flex items-center justify-center font-bold text-sm" style="background:linear-gradient(135deg,#22c55e,#3b82f6)">S</span><div><div class="font-semibold text-sm">Sophie Martin</div><div class="text-xs text-[var(--muted)]">Coach U14, AS Montlhéry</div></div></div>
+    </div>
+    <div class="glass rounded-2xl p-8 card-hover reveal">
+      <p class="text-[var(--muted)] leading-relaxed mb-6">« L'isolation des données entre clubs est parfaite. La messagerie interne a remplacé nos groupes WhatsApp. Interface claire et intuitive. »</p>
+      <div class="flex items-center gap-3"><span class="w-11 h-11 rounded-full flex items-center justify-center font-bold text-sm" style="background:linear-gradient(135deg,#7c5cff,#ff4d8d)">K</span><div><div class="font-semibold text-sm">Karim Benali</div><div class="text-xs text-[var(--muted)]">Directeur sportif, Club Évry</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="max-w-4xl mx-auto px-6 py-20">
+  <div class="reveal text-center mb-10">
+    <span class="tag">Tarifs</span>
+    <h2 class="display text-3xl md:text-4xl font-bold mt-4">Simple et transparent</h2>
+    <p class="text-[var(--muted)] mt-4">Commencez gratuitement, évoluez selon vos besoins. Sans engagement.</p>
+  </div>
+  <div class="grid md:grid-cols-2 gap-6">
+    <div class="glass rounded-2xl p-8 reveal">
+      <h3 class="text-xl font-semibold">Starter</h3>
+      <div class="stat-num grad-text text-4xl my-3">Gratuit</div>
+      <ul class="space-y-3 text-sm text-[var(--muted)] mt-6">
+        <li class="flex gap-2"><span class="check" style="color:var(--brand)">✓</span> 1 club · jusqu'à 20 membres</li>
+        <li class="flex gap-2"><span class="check" style="color:var(--brand)">✓</span> Gestion des catégories</li>
+        <li class="flex gap-2"><span class="check" style="color:var(--brand)">✓</span> Planning basique</li>
+        <li class="flex gap-2"><span class="check" style="color:var(--brand)">✓</span> Messagerie interne</li>
+      </ul>
+    </div>
+    <div class="glass rounded-2xl p-8 reveal" style="border-color:var(--brand-soft)">
+      <div class="flex items-center gap-2 mb-1"><h3 class="text-xl font-semibold">Pro</h3><span class="pill" style="background:var(--brand-soft);color:var(--brand);border-color:var(--brand-soft)">Recommandé</span></div>
+      <div class="stat-num grad-text text-4xl my-3">39€<span class="text-base text-[var(--muted)] font-normal">/mois</span></div>
+      <ul class="space-y-3 text-sm text-[var(--muted)] mt-6">
+        <li class="flex gap-2"><span class="check" style="color:var(--brand)">✓</span> 1 club · membres illimités</li>
+        <li class="flex gap-2"><span class="check" style="color:var(--brand)">✓</span> Gestion licences &amp; renouvellements</li>
+        <li class="flex gap-2"><span class="check" style="color:var(--brand)">✓</span> Stages &amp; suivi paiements</li>
+        <li class="flex gap-2"><span class="check" style="color:var(--brand)">✓</span> Statistiques avancées &amp; support prioritaire</li>
+      </ul>
+    </div>
+  </div>
+  <p class="text-center text-sm text-[var(--muted)] mt-6">À partir de 21 membres, votre club bascule automatiquement en formule Pro.</p>
+</section>
+
+<!-- CTA -->
+<section class="max-w-4xl mx-auto px-6 py-24">
+  <div class="glass rounded-3xl p-10 md:p-14 text-center relative overflow-hidden reveal">
+    <div class="blob" style="width:400px;height:400px;background:var(--brand);top:-150px;left:50%;transform:translateX(-50%)"></div>
+    <div class="relative z-10">
+      <h2 class="display text-3xl md:text-4xl font-bold mb-4">Un projet dans le même esprit ?</h2>
+      <p class="text-[var(--muted)] max-w-xl mx-auto mb-8">Parlons de votre idée — nous la transformons en produit numérique performant.</p>
+      <a href="index.html#contact" class="btn-primary px-8 py-4 rounded-full inline-flex items-center gap-2">Démarrer un projet <span>&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-white/10">
+  <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+    <a href="index.html#home" class="flex items-center gap-3">
+      <img src="./hubyteck-logo.png" alt="Hubyteck" class="h-9 w-auto">
+      <span class="display font-bold">Hubyteck</span>
+    </a>
+    <p class="text-sm text-[var(--muted)]">© 2025 Hubyteck. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+  const io = new IntersectionObserver((e)=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

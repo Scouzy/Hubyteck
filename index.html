@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hubyteck — Créateur de contenu numérique</title>
+<link rel="icon" href="./hubyteck-icon.ico">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070b14;
+    --bg2:#0c1322;
+    --accent:#00e5ff;
+    --accent2:#7c5cff;
+    --accent3:#ff4d8d;
+    --text:#e8eefc;
+    --muted:#8a97b4;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:'Space Grotesk',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Syne',sans-serif;letter-spacing:-0.02em}
+  .grad-text{
+    background:linear-gradient(120deg,var(--accent),var(--accent2) 50%,var(--accent3));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .glass{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+  }
+  .btn-primary{
+    background:linear-gradient(120deg,var(--accent),var(--accent2));
+    color:#06101f;font-weight:600;
+    transition:transform .25s, box-shadow .25s;
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,229,255,.35)}
+  .btn-ghost{
+    border:1px solid rgba(255,255,255,.15);
+    transition:all .25s;
+  }
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .nav-link{position:relative}
+  .nav-link::after{
+    content:'';position:absolute;left:0;bottom:-4px;width:0;height:2px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    transition:width .3s;
+  }
+  .nav-link:hover::after{width:100%}
+  #hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s, transform .8s}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .card-hover{transition:transform .4s, border-color .4s, background .4s}
+  .card-hover:hover{transform:translateY(-8px);border-color:rgba(0,229,255,.4)}
+  .marquee{display:flex;gap:60px;animation:scroll 25s linear infinite;white-space:nowrap}
+  @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;pointer-events:none}
+  .float{animation:float 6s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+  .grid-bg{
+    background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+                    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:50px 50px;
+  }
+  .service-icon{
+    width:56px;height:56px;border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(124,92,255,.15));
+    border:1px solid rgba(255,255,255,.1);
+  }
+  .tag{
+    font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;
+  }
+  .stat-num{font-family:'Syne',sans-serif;font-weight:800}
+  .progress-bar{height:6px;border-radius:99px;overflow:hidden;background:rgba(255,255,255,.08)}
+  .progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+  .accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .menu-open .bar1{transform:rotate(45deg) translate(5px,5px)}
+  .menu-open .bar2{opacity:0}
+  .menu-open .bar3{transform:rotate(-45deg) translate(7px,-7px)}
+  ::selection{background:var(--accent);color:#06101f}
+  select{color:var(--text)}
+  select option{background:var(--bg2);color:var(--text)}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(var(--accent),var(--accent2));border-radius:99px}
+
+  /* Project cards & logos */
+  .project-card{position:relative;overflow:hidden;transition:transform .3s;}
+  .project-visual{
+    position:relative;height:240px;display:flex;align-items:center;justify-content:center;
+    flex-direction:column;overflow:hidden;transition:transform .6s;
+  }
+  .project-card:hover{transform:translateY(-10px);}
+  .project-img{
+    max-width:140px; 
+    max-height:80px; 
+    z-index:10;
+    object-fit:contain;
+    transition:transform .4s ease;
+    filter:drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+  }
+  .project-card:hover .project-img{transform:scale(1.1)}
+  .project-logo{
+    max-height:140px;max-width:180px;object-fit:contain;z-index:10;
+    border-radius:16px;transition:transform .4s ease;
+    filter:drop-shadow(0 14px 28px rgba(0,0,0,.55));
+  }
+  .project-card:hover .project-logo{transform:scale(1.08)}
+  .project-ext{
+    position:absolute;top:16px;right:16px;z-index:20;
+    font-size:11px;font-weight:600;padding:5px 12px;border-radius:99px;
+    background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.18);
+    color:#fff;cursor:pointer;backdrop-filter:blur(6px);
+    display:inline-flex;align-items:center;gap:5px;transition:all .25s;
+  }
+  .project-ext:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.45);transform:translateY(-2px)}
+  .project-ext.disabled{opacity:.5;cursor:not-allowed}
+  .project-ext.disabled:hover{transform:none;background:rgba(0,0,0,.35);border-color:rgba(255,255,255,.18)}
+  .project-bg-pattern{
+    position:absolute;inset:0;opacity:.5;
+    background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:32px 32px;
+  }
+  .project-orb{position:absolute;border-radius:50%;filter:blur(50px);opacity:.5;}
+  .project-tag{
+    font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    padding:4px 10px;border-radius:99px;font-weight:600;z-index:10;
+  }
+
+  /* Navbar and footer specific styles */
+  #navbar.scrolled{ background:rgba(7,11,20,0.85); backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,0.06);}
+  footer { z-index:relative; }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+  <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#home" class="flex items-center gap-3">
+      <img src="./hubyteck-logo.png" alt="Hubyteck" class="h-10 w-auto">
+      <span class="display text-xl font-bold">Hubyteck</span>
+    </a>
+    <ul class="hidden md:flex items-center gap-8 text-sm text-[var(--muted)]">
+      <li><a href="#services" class="nav-link hover:text-white">Services</a></li>
+      <li><a href="#about" class="nav-link hover:text-white">À propos</a></li>
+      <li><a href="#projects" class="nav-link hover:text-white">Réalisations</a></li>
+      <li><a href="#process" class="nav-link hover:text-white">Méthode</a></li>
+      <li><a href="#contact" class="nav-link hover:text-white">Contact</a></li>
+    </ul>
+    <a href="#contact" class="hidden md:inline-block btn-primary px-5 py-2.5 rounded-full text-sm">Démarrer un projet</a>
+    <button id="menuBtn" class="md:hidden flex flex-col gap-1.5 p-2">
+      <span class="bar1 w-6 h-0.5 bg-white transition-all"></span>
+      <span class="bar2 w-6 h-0.5 bg-white transition-all"></span>
+      <span class="bar3 w-6 h-0.5 bg-white transition-all"></span>
+    </button>
+  </nav>
+  <div id="mobileMenu" class="md:hidden hidden glass mx-4 rounded-2xl p-6 mt-2">
+    <ul class="flex flex-col gap-4 text-[var(--muted)]">
+      <li><a href="#services" class="block hover:text-white">Services</a></li>
+      <li><a href="#about" class="block hover:text-white">À propos</a></li>
+      <li><a href="#projects" class="block hover:text-white">Réalisations</a></li>
+      <li><a href="#process" class="block hover:text-white">Méthode</a></li>
+      <li><a href="#contact" class="block hover:text-white">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="home" class="relative min-h-screen flex items-center overflow-hidden grid-bg">
+  <canvas id="hero-canvas"></canvas>
+  <div class="blob" style="width:500px;height:500px;background:var(--accent2);top:-100px;left:-100px"></div>
+  <div class="blob" style="width:400px;height:400px;background:var(--accent);bottom:-100px;right:-50px"></div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20 w-full">
+    <div class="max-w-3xl">
+      <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full mb-6">
+        <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse"></span>
+        <span class="text-xs text-[var(--muted)]">Disponible pour de nouveaux projets · 2025</span>
+      </div>
+      <h1 class="display text-5xl md:text-7xl font-bold leading-[1.05] mb-6">
+        Nous façonnons le <span class="grad-text">numérique</span> de demain.
+      </h1>
+      <p class="text-lg text-[var(--muted)] max-w-2xl mb-10 leading-relaxed">
+        Hubyteck conçoit des logiciels, applications et expériences digitales qui transforment
+        des idées ambitieuses en produits concrets, performants et élégants.
+      </p>
+      <div class="flex flex-wrap gap-4 mb-16">
+        <a href="#contact" class="btn-primary px-7 py-3.5 rounded-full text-sm inline-flex items-center gap-2">
+          Démarrer un projet <span>&rarr;</span>
+        </a>
+        <a href="#projects" class="btn-ghost px-7 py-3.5 rounded-full text-sm">Voir nos réalisations</a>
+      </div>
+      <div class="flex flex-wrap gap-12">
+        <div>
+          <div class="stat-num grad-text text-4xl md:text-5xl">120</div>
+          <div class="text-sm text-[var(--muted)] mt-1">Projets livrés</div>
+        </div>
+        <div>
+          <div class="stat-num grad-text text-4xl md:text-5xl">45</div>
+          <div class="text-sm text-[var(--muted)] mt-1">Clients satisfaits</div>
+        </div>
+        <div>
+          <div class="stat-num grad-text text-4xl md:text-5xl">8</div>
+          <div class="text-sm text-[var(--muted)] mt-1">Ans d'expertise</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="#services" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-[var(--muted)] text-xs">
+    Défiler
+    <span class="w-px h-10 bg-gradient-to-b from-[var(--accent)] to-transparent"></span>
+  </a>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="border-y border-white/10 py-6 overflow-hidden bg-[var(--bg2)]">
+  <div class="marquee text-2xl md:text-3xl font-semibold text-[var(--muted)]">
+    <span>Logiciels sur mesure · Applications mobiles · Plateformes web · UX/UI Design · Intelligence Artificielle · Cloud &amp; DevOps ·&nbsp;</span>
+    <span>Logiciels sur mesure · Applications mobiles · Plateformes web · UX/UI Design · Intelligence Artificielle · Cloud &amp; DevOps ·&nbsp;</span>
+  </div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<section id="services" class="relative max-w-7xl mx-auto px-6 py-28">
+  <div class="reveal">
+    <span class="tag">Nos services</span>
+    <h2 class="display text-4xl md:text-5xl font-bold mt-4 mb-6 leading-tight">
+      Une expertise complète,<br>du concept au déploiement
+    </h2>
+    <p class="text-[var(--muted)] max-w-2xl mb-14 leading-relaxed">
+      Nous accompagnons nos clients à chaque étape de la chaîne de valeur numérique,
+      avec une obsession : l'excellence technique et l'impact utilisateur.
+    </p>
+  </div>
+  <div class="grid md:grid-cols-2 gap-6">
+    <div class="glass rounded-2xl p-8 card-hover reveal">
+      <div class="service-icon mb-6 text-[var(--accent)] text-2xl">&lt;/&gt;</div>
+      <h3 class="text-xl font-semibold mb-3">Logiciels sur mesure</h3>
+      <p class="text-[var(--muted)] leading-relaxed">Des applications desktop et SaaS conçues pour répondre précisément à vos besoins métier, avec une architecture robuste et évolutive.</p>
+    </div>
+    <div class="glass rounded-2xl p-8 card-hover reveal">
+      <div class="service-icon mb-6 text-[var(--accent2)] text-2xl">▢</div>
+      <h3 class="text-xl font-semibold mb-3">Applications mobiles</h3>
+      <p class="text-[var(--muted)] leading-relaxed">iOS, Android et cross-platform. Des apps fluides, performantes et pensées pour engager vos utilisateurs au quotidien.</p>
+    </div>
+    <div class="glass rounded-2xl p-8 card-hover reveal">
+      <div class="service-icon mb-6 text-[var(--accent3)] text-2xl">◍</div>
+      <h3 class="text-xl font-semibold mb-3">Plateformes web</h3>
+      <p class="text-[var(--muted)] leading-relaxed">Sites vitrines, dashboards, e-commerce et plateformes complexes. Des expériences web rapides, accessibles et SEO-friendly.</p>
+    </div>
+    <div class="glass rounded-2xl p-8 card-hover reveal">
+      <div class="service-icon mb-6 text-[var(--accent)] text-2xl">✎</div>
+      <h3 class="text-xl font-semibold mb-3">UX / UI Design</h3>
+      <p class="text-[var(--muted)] leading-relaxed">Design systems, prototypes interactifs et interfaces qui marient esthétique moderne et ergonomie intuitive.</p>
+    </div>
+    <div class="glass rounded-2xl p-8 card-hover reveal">
+      <div class="service-icon mb-6 text-[var(--accent2)] text-2xl">✦</div>
+      <h3 class="text-xl font-semibold mb-3">Intelligence Artificielle</h3>
+      <p class="text-[var(--muted)] leading-relaxed">Intégration de modèles IA, automatisation et assistants intelligents pour donner un avantage concurrentiel à vos produits.</p>
+    </div>
+    <div class="glass rounded-2xl p-8 card-hover reveal">
+      <div class="service-icon mb-6 text-[var(--accent3)] text-2xl">☁</div>
+      <h3 class="text-xl font-semibold mb-3">Cloud &amp; DevOps</h3>
+      <p class="text-[var(--muted)] leading-relaxed">Infrastructure scalable, CI/CD et monitoring. Nous déployons et maintenons vos solutions avec fiabilité.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="relative max-w-7xl mx-auto px-6 py-28">
+  <div class="grid md:grid-cols-2 gap-16 items-center">
+    <div class="reveal">
+      <span class="tag">À propos</span>
+      <h2 class="display text-4xl md:text-5xl font-bold mt-4 mb-6 leading-tight">
+        Un collectif de créateurs technologiques
+      </h2>
+      <p class="text-[var(--muted)] leading-relaxed mb-4">
+        Depuis 2017, Hubyteck réunit des développeurs, designers, chefs de projet et experts IA
+        autour d'une mission : transformer la complexité en simplicité numérique. Nous croyons qu'un
+        grand produit naît de la rencontre entre rigueur technique et créativité.
+      </p>
+      <p class="text-[var(--muted)] leading-relaxed mb-10">
+        Notre approche collaborative et itérative nous permet de livrer rapidement, d'ajuster en
+        continu et de bâtir des solutions qui durent.
+      </p>
+      <div class="space-y-5">
+        <div>
+          <div class="flex justify-between text-sm mb-2"><span>Expertise technique</span><span>95%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-2"><span>Design &amp; UX</span><span>90%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-2"><span>Satisfaction client</span><span>98%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:98%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="glass rounded-3xl p-8 reveal relative overflow-hidden">
+      <div class="blob" style="width:300px;height:300px;background:var(--accent2);bottom:-120px;right:-120px"></div>
+      <div class="relative z-10">
+        <div class="flex items-center gap-4 mb-8">
+          <img src="./hubyteck-logo.png" alt="Hubyteck" class="h-14 w-auto">
+          <div>
+            <div class="text-lg font-semibold">Hubyteck Studio</div>
+            <div class="text-sm text-[var(--muted)]">Paris · Remote worldwide</div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="glass rounded-2xl p-5">
+            <div class="stat-num grad-text text-3xl">2017</div>
+            <div class="text-sm text-[var(--muted)] mt-1">Année de création</div>
+          </div>
+          <div class="glass rounded-2xl p-5">
+            <div class="stat-num grad-text text-3xl">32</div>
+            <div class="text-sm text-[var(--muted)] mt-1">Talents internes</div>
+          </div>
+          <div class="glass rounded-2xl p-5">
+            <div class="stat-num grad-text text-3xl">15</div>
+            <div class="text-sm text-[var(--muted)] mt-1">Pays couverts</div>
+          </div>
+          <div class="glass rounded-2xl p-5">
+            <div class="stat-num grad-text text-3xl">99.9%</div>
+            <div class="text-sm text-[var(--muted)] mt-1">Uptime moyen</div>
+          </div>
+        </div>
+        <blockquote class="mt-8 pl-4 border-l-2 border-[var(--accent)] text-[var(--muted)] italic">
+          « La technologie n'est rien sans l'humain qui la pense, la construit et la fait vivre. »
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects" class="relative max-w-7xl mx-auto px-6 py-28">
+  <div class="reveal mb-14">
+    <span class="tag">Réalisations</span>
+    <h2 class="display text-4xl md:text-5xl font-bold mt-4 leading-tight">
+      Des produits que nous avons imaginés<br>et construits
+    </h2>
+  </div>
+  <div class="grid md:grid-cols-2 gap-6">
+
+    <!-- G1Sport -->
+    <a href="g1sport.html" class="block glass rounded-2xl project-card card-hover reveal">
+      <div class="project-visual">
+        <div class="project-bg-pattern"></div>
+        <div class="project-orb" style="width:220px;height:220px;background:#22c55e;top:-60px;left:-40px"></div>
+        <span class="project-tag" style="position:absolute;top:16px;left:16px;background:rgba(34,197,94,.18);color:#22c55e">Sport &amp; Coaching</span>
+        <span class="project-ext" title="Ouvrir g1sport.fr" onclick="event.preventDefault();event.stopPropagation();window.open('https://g1sport.fr','_blank','noopener')">Site officiel &#8599;</span>
+        <img src="./g1sport-logo.png" alt="G1Sport" class="project-logo">
+        <span class="text-xs tracking-[.2em] text-[var(--muted)] mt-3 z-10">COACHS × SPORTIFS</span>
+      </div>
+      <div class="p-6">
+        <h3 class="text-lg font-semibold mb-2">G1Sport — Plateforme coaching sportif</h3>
+        <p class="text-sm text-[var(--muted)] mb-4">G1Sport réunit coachs professionnels et sportifs ambitieux sur une seule plateforme : réservations, suivi des performances, messagerie — tout en un.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="project-tag glass">Réservations</span>
+          <span class="project-tag glass">Suivi perf</span>
+          <span class="project-tag glass">Messagerie</span>
+        </div>
+        <span class="inline-flex items-center gap-2 mt-6 text-sm font-semibold" style="color:#22c55e">Voir le projet <span>&rarr;</span></span>
+      </div>
+    </a>
+
+    <!-- G1Club -->
+    <a href="g1club.html" class="block glass rounded-2xl project-card card-hover reveal">
+      <div class="project-visual">
+        <div class="project-bg-pattern"></div>
+        <div class="project-orb" style="width:220px;height:220px;background:#3b82f6;bottom:-60px;right:-40px"></div>
+        <span class="project-tag" style="position:absolute;top:16px;left:16px;background:rgba(59,130,246,.18);color:#3b82f6">Sports collectifs</span>
+        <span class="project-ext" title="Ouvrir g1club.fr" onclick="event.preventDefault();event.stopPropagation();window.open('https://g1club.fr','_blank','noopener')">Site officiel &#8599;</span>
+        <img src="./g1club-logo.png" alt="G1Club" class="project-logo">
+        <span class="text-xs tracking-[.2em] text-[var(--muted)] mt-3 z-10">GESTION MULTI-CLUBS</span>
+      </div>
+      <div class="p-6">
+        <h3 class="text-lg font-semibold mb-2">G1Club — Gestion de clubs sportifs</h3>
+        <p class="text-sm text-[var(--muted)] mb-4">G1Club centralise la gestion de vos sportifs, coachs, entraînements et communications. Une plateforme moderne, sécurisée et multi-clubs pour les clubs de football et sports collectifs.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="project-tag glass">Multi-clubs</span>
+          <span class="project-tag glass">Sécurisé</span>
+          <span class="project-tag glass">Football</span>
+        </div>
+        <span class="inline-flex items-center gap-2 mt-6 text-sm font-semibold" style="color:#3b82f6">Voir le projet <span>&rarr;</span></span>
+      </div>
+    </a>
+
+    <!-- G1Oeil -->
+    <a href="g1oeil.html" class="block glass rounded-2xl project-card card-hover reveal">
+      <div class="project-visual">
+        <div class="project-bg-pattern"></div>
+        <div class="project-orb" style="width:220px;height:220px;background:#a855f7;top:-60px;left:-40px"></div>
+        <span class="project-tag" style="position:absolute;top:16px;left:16px;background:rgba(168,85,247,.18);color:#a855f7">Infra &amp; Monitoring</span>
+        <span class="project-ext disabled" title="Site officiel bientôt en ligne">Site bientôt</span>
+        <img src="./g1oeil-logo.png" alt="G1Oeil" class="project-logo">
+        <span class="text-xs tracking-[.2em] text-[var(--muted)] mt-3 z-10">SUPERVISION TEMPS RÉEL</span>
+      </div>
+      <div class="p-6">
+        <h3 class="text-lg font-semibold mb-2">G1Oeil — Supervision d'URLs en temps réel</h3>
+        <p class="text-sm text-[var(--muted)] mb-4">Application de supervision d'URLs en temps réel avec gestion des serveurs, capacity planning, journal des alertes, backend d'administration et comparaison d'images de référence.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="project-tag glass">Monitoring</span>
+          <span class="project-tag glass">Capacity planning</span>
+          <span class="project-tag glass">Alertes</span>
+          <span class="project-tag glass">Image diff</span>
+        </div>
+        <span class="inline-flex items-center gap-2 mt-6 text-sm font-semibold" style="color:#a855f7">Voir le projet <span>&rarr;</span></span>
+      </div>
+    </a>
+
+    <!-- Noteazy -->
+    <a href="noteazy.html" class="block glass rounded-2xl project-card card-hover reveal">
+      <div class="project-visual">
+        <div class="project-bg-pattern"></div>
+        <div class="project-orb" style="width:220px;height:220px;background:#f59e0b;bottom:-60px;right:-40px"></div>
+        <span class="project-tag" style="position:absolute;top:16px;left:16px;background:rgba(245,158,11,.18);color:#f59e0b">Productivité</span>
+        <span class="project-ext" title="Ouvrir noteazy.com" onclick="event.preventDefault();event.stopPropagation();window.open('https://noteazy.com','_blank','noopener')">Site officiel &#8599;</span>
+        <img src="./noteazy-logo.png" alt="Noteazy" class="project-logo" style="max-width:200px;background:#fff;padding:6px">
+        <span class="text-xs tracking-[.2em] text-[var(--muted)] mt-3 z-10">PRODUCTIVITÉ TOUT-EN-UN</span>
+      </div>
+      <div class="p-6">
+        <h3 class="text-lg font-semibold mb-2">Noteazy — Station de travail tout-en-un</h3>
+        <p class="text-sm text-[var(--muted)] mb-4">Station de travail de productivité tout-en-un — notes, tâches, fichiers multiformats, terminal intégré et dashboard personnalisable, dans un environnement unifié, extensible et élégant.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="project-tag glass">Notes</span>
+          <span class="project-tag glass">Tâches</span>
+          <span class="project-tag glass">Terminal</span>
+          <span class="project-tag glass">Dashboard</span>
+        </div>
+        <span class="inline-flex items-center gap-2 mt-6 text-sm font-semibold" style="color:#f59e0b">Voir le projet <span>&rarr;</span></span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ===== PROCESS / MÉTHODE ===== -->
+<section id="process" class="relative max-w-4xl mx-auto px-6 py-28">
+  <div class="reveal text-center mb-14">
+    <span class="tag">Notre méthode</span>
+    <h2 class="display text-4xl md:text-5xl font-bold mt-4 leading-tight">
+      Un processus clair, des résultats concrets
+    </h2>
+  </div>
+  <div class="space-y-4">
+    <div class="glass rounded-2xl accordion reveal">
+      <button class="accordion-head w-full flex items-center gap-5 p-6 text-left">
+        <span class="stat-num grad-text text-2xl">01</span>
+        <span class="font-semibold flex-1">Découverte &amp; cadrage</span>
+        <span class="accordion-icon text-[var(--accent)] text-xl transition-transform">+</span>
+      </button>
+      <div class="accordion-body px-6"><p class="pb-6 text-[var(--muted)] leading-relaxed">Nous analysons vos objectifs, vos utilisateurs et vos contraintes pour définir un périmètre clair, un budget maîtrisé et une feuille de route réaliste.</p></div>
+    </div>
+    <div class="glass rounded-2xl accordion reveal">
+      <button class="accordion-head w-full flex items-center gap-5 p-6 text-left">
+        <span class="stat-num grad-text text-2xl">02</span>
+        <span class="font-semibold flex-1">Design &amp; prototypage</span>
+        <span class="accordion-icon text-[var(--accent)] text-xl transition-transform">+</span>
+      </button>
+      <div class="accordion-body px-6"><p class="pb-6 text-[var(--muted)] leading-relaxed">Wireframes, design system et prototypes interactifs pour valider l'expérience avant d'écrire la moindre ligne de code.</p></div>
+    </div>
+    <div class="glass rounded-2xl accordion reveal">
+      <button class="accordion-head w-full flex items-center gap-5 p-6 text-left">
+        <span class="stat-num grad-text text-2xl">03</span>
+        <span class="font-semibold flex-1">Développement itératif</span>
+        <span class="accordion-icon text-[var(--accent)] text-xl transition-transform">+</span>
+      </button>
+      <div class="accordion-body px-6"><p class="pb-6 text-[var(--muted)] leading-relaxed">Des sprints courts, des livraisons régulières et des retours continus. Vous suivez l'avancement et ajustez à chaque étape.</p></div>
+    </div>
+    <div class="glass rounded-2xl accordion reveal">
+      <button class="accordion-head w-full flex items-center gap-5 p-6 text-left">
+        <span class="stat-num grad-text text-2xl">04</span>
+        <span class="font-semibold flex-1">Lancement &amp; croissance</span>
+        <span class="accordion-icon text-[var(--accent)] text-xl transition-transform">+</span>
+      </button>
+      <div class="accordion-body px-6"><p class="pb-6 text-[var(--muted)] leading-relaxed">Mise en production, monitoring et optimisation continue. Nous restons à vos côtés pour faire évoluer le produit.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section id="testimonials" class="relative max-w-7xl mx-auto px-6 py-28">
+  <div class="reveal text-center mb-14">
+    <span class="tag">Témoignages</span>
+    <h2 class="display text-4xl md:text-5xl font-bold mt-4 leading-tight">
+      Ils nous font confiance
+    </h2>
+  </div>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="glass rounded-2xl p-8 card-hover reveal">
+      <div class="text-4xl grad-text mb-4 leading-none">&#8220;</div>
+      <p class="text-[var(--muted)] leading-relaxed mb-6">G1Sport a révolutionné mon activité de coaching. Réservations, suivi, messagerie : tout est enfin au même endroit.</p>
+      <div class="flex items-center gap-3">
+        <span class="w-11 h-11 rounded-full flex items-center justify-center font-bold text-sm" style="background:linear-gradient(135deg,#22c55e,#0ea5a5)">YM</span>
+        <div><div class="font-semibold text-sm">Yanis M.</div><div class="text-xs text-[var(--muted)]">Coach sportif, G1Sport</div></div>
+      </div>
+    </div>
+    <div class="glass rounded-2xl p-8 card-hover reveal">
+      <div class="text-4xl grad-text mb-4 leading-none">&#8220;</div>
+      <p class="text-[var(--muted)] leading-relaxed mb-6">G1Club nous a fait gagner un temps fou sur la gestion de nos 12 équipes. Une plateforme intuitive et complète.</p>
+      <div class="flex items-center gap-3">
+        <span class="w-11 h-11 rounded-full flex items-center justify-center font-bold text-sm" style="background:linear-gradient(135deg,#3b82f6,#7c5cff)">CD</span>
+        <div><div class="font-semibold text-sm">Carole D.</div><div class="text-xs text-[var(--muted)]">Directrice, club de football</div></div>
+      </div>
+    </div>
+    <div class="glass rounded-2xl p-8 card-hover reveal">
+      <div class="text-4xl grad-text mb-4 leading-none">&#8220;</div>
+      <p class="text-[var(--muted)] leading-relaxed mb-6">Noteazy a remplacé 5 outils différents dans mon workflow. C'est devenu indispensable à mon quotidien.</p>
+      <div class="flex items-center gap-3">
+        <span class="w-11 h-11 rounded-full flex items-center justify-center font-bold text-sm" style="background:linear-gradient(135deg,#f59e0b,#ff4d8d)">TL</span>
+        <div><div class="font-semibold text-sm">Thomas L.</div><div class="text-xs text-[var(--muted)]">Développeur freelance</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="relative max-w-7xl mx-auto px-6 py-28">
+  <div class="glass rounded-3xl p-10 md:p-14 reveal relative overflow-hidden">
+    <div class="blob" style="width:400px;height:400px;background:var(--accent2);top:-150px;right:-100px"></div>
+    <div class="relative z-10 grid md:grid-cols-2 gap-12">
+      <div>
+        <span class="tag">Contact</span>
+        <h2 class="display text-3xl md:text-5xl font-bold mt-4 mb-5 leading-tight">
+          Parlons de votre projet
+        </h2>
+        <p class="text-[var(--muted)] mb-10 leading-relaxed">
+          Une idée, un besoin, une ambition ? Notre équipe vous répond sous 24h.
+        </p>
+        <ul class="space-y-4 text-sm">
+          <li class="flex items-center gap-3">
+            <span class="service-icon" style="width:40px;height:40px;border-radius:10px">@</span>
+            <a href="mailto:hello@hubyteck.com" class="hover:text-white">hello@hubyteck.com</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="service-icon" style="width:40px;height:40px;border-radius:10px">&#9742;</span>
+            <a href="tel:+33184801234" class="hover:text-white">+33 1 84 80 12 34</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="service-icon" style="width:40px;height:40px;border-radius:10px">&#9679;</span>
+            <span>24 rue du Numérique, 75011 Paris</span>
+          </li>
+        </ul>
+      </div>
+      <form class="grid gap-5" onsubmit="return false">
+        <div>
+          <label class="block text-sm text-[var(--muted)] mb-2">Nom complet</label>
+          <input type="text" placeholder="Votre nom" class="w-full glass rounded-xl px-4 py-3 outline-none focus:border-[var(--accent)] transition" />
+        </div>
+        <div>
+          <label class="block text-sm text-[var(--muted)] mb-2">Email</label>
+          <input type="email" placeholder="vous@entreprise.com" class="w-full glass rounded-xl px-4 py-3 outline-none focus:border-[var(--accent)] transition" />
+        </div>
+        <div>
+          <label class="block text-sm text-[var(--muted)] mb-2">Type de projet</label>
+          <select class="w-full glass rounded-xl px-4 py-3 outline-none focus:border-[var(--accent)] transition text-[var(--text)]">
+            <option>Logiciel sur mesure</option>
+            <option>Application mobile</option>
+            <option>Plateforme web</option>
+            <option>UX / UI Design</option>
+            <option>Intelligence Artificielle</option>
+            <option>Cloud &amp; DevOps</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm text-[var(--muted)] mb-2">Message</label>
+          <textarea rows="4" placeholder="Décrivez votre projet..." class="w-full glass rounded-xl px-4 py-3 outline-none focus:border-[var(--accent)] transition"></textarea>
+        </div>
+        <button type="submit" class="btn-primary px-7 py-3.5 rounded-full text-sm inline-flex items-center justify-center gap-2">
+          Envoyer ma demande <span>&rarr;</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="border-t border-white/10 mt-10">
+  <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-3">
+      <img src="./hubyteck-logo.png" alt="Hubyteck" class="h-9 w-auto">
+      <span class="display font-bold">Hubyteck</span>
+    </div>
+    <ul class="flex flex-wrap gap-6 text-sm text-[var(--muted)]">
+      <li><a href="#services" class="hover:text-white">Services</a></li>
+      <li><a href="#about" class="hover:text-white">À propos</a></li>
+      <li><a href="#projects" class="hover:text-white">Réalisations</a></li>
+      <li><a href="#contact" class="hover:text-white">Contact</a></li>
+    </ul>
+    <p class="text-sm text-[var(--muted)]">© 2025 Hubyteck. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+  // Navbar scroll state
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('menu-open');
+    mobileMenu.classList.toggle('hidden');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menuBtn.classList.remove('menu-open');
+    mobileMenu.classList.add('hidden');
+  }));
+
+  // Accordion (méthode)
+  document.querySelectorAll('.accordion-head').forEach(head => {
+    head.addEventListener('click', () => {
+      const body = head.nextElementSibling;
+      const icon = head.querySelector('.accordion-icon');
+      const open = body.style.maxHeight && body.style.maxHeight !== '0px';
+      document.querySelectorAll('.accordion-body').forEach(b => {
+        b.style.maxHeight = '0px';
+        const i = b.previousElementSibling.querySelector('.accordion-icon');
+        if (i) i.style.transform = 'rotate(0deg)';
+      });
+      if (!open) {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        icon.style.transform = 'rotate(45deg)';
+      }
+    });
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Hero particle canvas
+  const canvas = document.getElementById('hero-canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let w, h, points;
+    const COLORS = ['#00e5ff', '#7c5cff', '#ff4d8d'];
+    function resize() {
+      w = canvas.width = canvas.offsetWidth;
+      h = canvas.height = canvas.offsetHeight;
+      const count = Math.min(90, Math.floor(w * h / 16000));
+      points = Array.from({ length: count }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
+        c: COLORS[Math.floor(Math.random() * COLORS.length)]
+      }));
+    }
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2);
+        ctx.fillStyle = p.c;
+        ctx.fill();
+        for (let j = i + 1; j < points.length; j++) {
+          const q = points[j];
+          const dx = p.x - q.x, dy = p.y - q.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 130) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = 'rgba(138,151,180,' + (1 - dist / 130) * 0.25 + ')';
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    draw();
+  }
+</script>
+
+</body>
+</html>

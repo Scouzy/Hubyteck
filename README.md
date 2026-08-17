@@ -1,0 +1,70 @@
+# Hubyteck — Site vitrine
+
+Site web vitrine de **Hubyteck**, studio de création de logiciels, applications et expériences
+numériques. Le site présente les services, l'agence et le portfolio d'applications, avec une page
+détaillée par produit.
+
+## Aperçu
+
+- **Page d'accueil** (`index.html`) : hero animé, services, à propos, réalisations, méthode,
+  témoignages et formulaire de contact.
+- **Pages produits** : une landing par application du portfolio, avec contenu réel, lien vers le
+  site officiel et appel à l'action.
+
+## Structure du projet
+
+```
+.
+├── index.html          # Page d'accueil
+├── g1sport.html        # Page produit — G1Sport (coaching sportif)
+├── g1club.html         # Page produit — G1Club (gestion de clubs sportifs)
+├── g1oeil.html         # Page produit — G1Oeil (supervision d'URLs)
+├── noteazy.html        # Page produit — Noteazy (station de travail tout-en-un)
+├── hubyteck.css        # Styles partagés par les pages produits
+├── hubyteck-logo.png   # Logo Hubyteck
+├── hubyteck-icon.ico   # Favicon
+├── g1sport-logo.png    # Logos des applications
+├── g1club-logo.png
+├── g1oeil-logo.png
+├── noteazy-logo.png
+└── README.md
+```
+
+> La page d'accueil (`index.html`) embarque ses propres styles en ligne. Les pages produits
+> partagent la feuille de style `hubyteck.css`.
+
+## Technologies
+
+- HTML5 / CSS3
+- [Tailwind CSS](https://tailwindcss.com/) via CDN
+- JavaScript natif (animation canvas, menu mobile, accordéon, apparitions au scroll)
+- Polices Google Fonts : *Syne* et *Space Grotesk*
+
+Aucune étape de build n'est nécessaire : ce sont des pages statiques.
+
+## Lancer en local
+
+Comme il s'agit de fichiers statiques, un simple serveur HTTP suffit :
+
+```bash
+# Python
+python -m http.server 8000
+```
+
+Puis ouvrir <http://localhost:8000>.
+
+## Réalisations & liens externes
+
+| Application | Description | Site officiel |
+|-------------|-------------|---------------|
+| G1Sport | Plateforme de coaching sportif | https://g1sport.fr |
+| G1Club | Gestion de clubs sportifs | https://g1club.fr |
+| Noteazy | Station de travail tout-en-un | https://noteazy.com |
+| G1Oeil | Supervision d'URLs en temps réel | *à venir* |
+
+Le lien officiel de **G1Oeil** est déjà préparé (en commentaire) dans `g1oeil.html` et sur la carte
+correspondante de `index.html` ; il suffira de l'activer une fois le site en ligne.
+
+## Licence
+
+© 2025 Hubyteck. Tous droits réservés. Projet propriétaire — usage interne à Hubyteck.

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G1Oeil — Supervision d'URLs en temps réel | Hubyteck</title>
+<link rel="icon" href="./hubyteck-icon.ico">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./hubyteck.css">
+<style>:root{--brand:#a855f7;--brand-soft:rgba(168,85,247,.15)}</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+  <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html#home" class="flex items-center gap-3">
+      <img src="./hubyteck-logo.png" alt="Hubyteck" class="h-10 w-auto">
+      <span class="display text-xl font-bold">Hubyteck</span>
+    </a>
+    <a href="index.html#projects" class="btn-ghost px-5 py-2.5 rounded-full text-sm">&larr; Réalisations</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="relative min-h-[85vh] flex items-center overflow-hidden grid-bg pt-28 pb-20">
+  <div class="blob" style="width:500px;height:500px;background:var(--brand);top:-120px;left:-100px"></div>
+  <div class="blob" style="width:400px;height:400px;background:var(--accent);bottom:-120px;right:-60px"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center w-full">
+    <div class="reveal">
+      <span class="pill inline-block mb-6" style="background:var(--brand-soft);color:var(--brand);border-color:var(--brand-soft)">Version 1.0.0 · Application native</span>
+      <h1 class="display text-5xl md:text-6xl font-bold leading-[1.05] mb-6">
+        La supervision, <span style="color:var(--brand)">en application native</span>
+      </h1>
+      <p class="text-lg text-[var(--muted)] leading-relaxed mb-8">
+        Surveillez vos URLs en temps réel, gérez votre inventaire serveurs, anticipez la capacité
+        et centralisez vos alertes — sur votre bureau, Windows, macOS ou Linux.
+      </p>
+      <div class="flex flex-wrap gap-3 mb-10">
+        <span class="pill">Monitoring</span>
+        <span class="pill">Capacity planning</span>
+        <span class="pill">Alertes</span>
+        <span class="pill">Image diff</span>
+      </div>
+      <div class="flex flex-wrap gap-4">
+        <!-- TODO: remplacer par le lien officiel de G1Oeil une fois le site en ligne :
+             <a href="https://g1oeil.fr" target="_blank" rel="noopener" class="btn-primary px-7 py-3.5 rounded-full text-sm inline-flex items-center gap-2">Visiter le site officiel <span>&#8599;</span></a> -->
+        <span class="btn-ghost px-7 py-3.5 rounded-full text-sm inline-flex items-center gap-2 opacity-60 cursor-not-allowed" title="Site officiel en cours de construction">Site officiel — bientôt en ligne</span>
+        <a href="index.html#contact" class="btn-primary px-7 py-3.5 rounded-full text-sm">Discuter d'un projet similaire</a>
+      </div>
+    </div>
+    <div class="reveal flex justify-center">
+      <div class="glass rounded-3xl p-10 relative overflow-hidden">
+        <div class="blob" style="width:260px;height:260px;background:var(--brand);top:-80px;right:-80px"></div>
+        <img src="./g1oeil-logo.png" alt="G1Oeil" class="relative z-10 max-h-72 w-auto mx-auto rounded-2xl" style="filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="max-w-4xl mx-auto px-6 py-20">
+  <div class="reveal">
+    <span class="tag">Ce que fait G1Oeil</span>
+    <h2 class="display text-3xl md:text-4xl font-bold mt-4 mb-6">Une plateforme complète de supervision et de capacity planning</h2>
+    <p class="text-[var(--muted)] leading-relaxed">
+      G1Oeil surveille en continu vos URLs et vos serveurs pour détecter la moindre anomalie avant
+      qu'elle n'impacte vos utilisateurs. Au-delà du monitoring, la plateforme intègre l'inventaire
+      serveurs, le capacity planning, un journal d'alertes détaillé et une comparaison visuelle par
+      rapport à des images de référence.
+    </p>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="max-w-7xl mx-auto px-6 py-16">
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="glass rounded-2xl p-7 card-hover reveal"><div class="feature-icon mb-4" style="color:var(--brand)">🌐</div><h3 class="font-semibold mb-2">Surveillance URLs</h3><p class="text-sm text-[var(--muted)]">Vérification automatique (10s à 5min), scénarios multi-étapes authentifiés et détection de changements visuels.</p></div>
+    <div class="glass rounded-2xl p-7 card-hover reveal"><div class="feature-icon mb-4" style="color:var(--brand)">🖥️</div><h3 class="font-semibold mb-2">Inventaire serveurs</h3><p class="text-sm text-[var(--muted)]">Import Excel / API, jauges CPU/RAM/Disque, tendances sur 12 mois et cartographie applicative.</p></div>
+    <div class="glass rounded-2xl p-7 card-hover reveal"><div class="feature-icon mb-4" style="color:var(--brand)">📉</div><h3 class="font-semibold mb-2">Capacity planning</h3><p class="text-sm text-[var(--muted)]">Projections à 6 mois, seuil critique 90% et recommandations automatiques de dimensionnement.</p></div>
+    <div class="glass rounded-2xl p-7 card-hover reveal"><div class="feature-icon mb-4" style="color:var(--brand)">🔔</div><h3 class="font-semibold mb-2">Journal d'alertes</h3><p class="text-sm text-[var(--muted)]">Pannes, rétablissements, expirations SSL et alertes de capacité, tracés et notifiés en temps réel.</p></div>
+    <div class="glass rounded-2xl p-7 card-hover reveal"><div class="feature-icon mb-4" style="color:var(--brand)">✅</div><h3 class="font-semibold mb-2">TodoList &amp; MEP</h3><p class="text-sm text-[var(--muted)]">Tâches auto-générées (SSL + capacity), vues Kanban/Liste et suivi des mises en production.</p></div>
+    <div class="glass rounded-2xl p-7 card-hover reveal"><div class="feature-icon mb-4" style="color:var(--brand)">🔒</div><h3 class="font-semibold mb-2">Backend sécurisé</h3><p class="text-sm text-[var(--muted)]">Authentification JWT, rôles admin/superadmin, rate-limiting et journal d'audit complet.</p></div>
+  </div>
+</section>
+
+<!-- INSTALL -->
+<section class="max-w-4xl mx-auto px-6 py-20">
+  <div class="reveal text-center mb-12">
+    <span class="tag">Installation</span>
+    <h2 class="display text-3xl md:text-4xl font-bold mt-4">En 3 étapes</h2>
+  </div>
+  <div class="space-y-4">
+    <div class="glass rounded-2xl p-6 flex items-start gap-5 reveal"><span class="step-num">1</span><div><h3 class="font-semibold mb-1">Téléchargez</h3><p class="text-sm text-[var(--muted)]">Le fichier correspondant à votre système : Windows (.exe), macOS (.dmg) ou Linux (AppImage / .deb).</p></div></div>
+    <div class="glass rounded-2xl p-6 flex items-start gap-5 reveal"><span class="step-num">2</span><div><h3 class="font-semibold mb-1">Lancez l'installeur</h3><p class="text-sm text-[var(--muted)]">Installeur Windows, montage du .dmg macOS, ou AppImage rendue exécutable sous Linux.</p></div></div>
+    <div class="glass rounded-2xl p-6 flex items-start gap-5 reveal"><span class="step-num">3</span><div><h3 class="font-semibold mb-1">Ouvrez G1Oeil</h3><p class="text-sm text-[var(--muted)]">Connectez-vous et commencez à superviser vos URLs et serveurs en temps réel.</p></div></div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section class="max-w-3xl mx-auto px-6 pb-16">
+  <div class="flex flex-wrap justify-center gap-3 reveal">
+    <span class="pill">Windows 10 / 11 · .exe</span>
+    <span class="pill">macOS · .dmg (Apple Silicon &amp; Intel)</span>
+    <span class="pill">Linux · AppImage / .deb</span>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="max-w-4xl mx-auto px-6 py-24">
+  <div class="glass rounded-3xl p-10 md:p-14 text-center relative overflow-hidden reveal">
+    <div class="blob" style="width:400px;height:400px;background:var(--brand);top:-150px;left:50%;transform:translateX(-50%)"></div>
+    <div class="relative z-10">
+      <h2 class="display text-3xl md:text-4xl font-bold mb-4">Un projet dans le même esprit ?</h2>
+      <p class="text-[var(--muted)] max-w-xl mx-auto mb-8">Parlons de votre idée — nous la transformons en produit numérique performant.</p>
+      <a href="index.html#contact" class="btn-primary px-8 py-4 rounded-full inline-flex items-center gap-2">Démarrer un projet <span>&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-white/10">
+  <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+    <a href="index.html#home" class="flex items-center gap-3">
+      <img src="./hubyteck-logo.png" alt="Hubyteck" class="h-9 w-auto">
+      <span class="display font-bold">Hubyteck</span>
+    </a>
+    <p class="text-sm text-[var(--muted)]">© 2025 Hubyteck. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+  const io = new IntersectionObserver((e)=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

@@ -89,7 +89,7 @@ a{color:inherit;text-decoration:none}
 .carousel-viewport{overflow:hidden;border-radius:18px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)}
 .carousel-track{display:flex;transition:transform .6s cubic-bezier(.22,.61,.36,1);will-change:transform}
 .carousel-slide{flex:0 0 100%;min-width:100%;padding:6px}
-.carousel-slide img{width:100%;height:auto;display:block;border-radius:14px;object-fit:cover;max-height:520px;background:rgba(255,255,255,.02)}
+.carousel-slide img{width:100%;height:auto;display:block;border-radius:14px;object-fit:cover;object-position:top center;max-height:520px;background:rgba(255,255,255,.02)}
 .carousel-btn{
   position:absolute;top:50%;transform:translateY(-50%);z-index:20;
   width:44px;height:44px;border-radius:50%;

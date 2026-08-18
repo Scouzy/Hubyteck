@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>G1Oeil — Supervision d'URLs en temps réel | Hubyteck</title>
-<link rel="icon" href="./hubyteck-icon.ico">
+<link rel="icon" href="./img/hubyteck-icon.ico">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./hubyteck.css">
+<link rel="stylesheet" href="./css/hubyteck.css">
 <style>:root{--brand:#a855f7;--brand-soft:rgba(168,85,247,.15)}</style>
 </head>
 <body>
@@ -16,7 +16,7 @@
 <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
   <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <a href="index.html#home" class="flex items-center gap-3">
-      <img src="./hubyteck-logo.png" alt="Hubyteck" class="h-10 w-auto">
+      <img src="./img/hubyteck-logo.png" alt="Hubyteck" class="h-10 w-auto">
       <span class="display text-xl font-bold">Hubyteck</span>
     </a>
     <a href="index.html#projects" class="btn-ghost px-5 py-2.5 rounded-full text-sm">&larr; Réalisations</a>
@@ -53,9 +53,33 @@
     <div class="reveal flex justify-center">
       <div class="glass rounded-3xl p-10 relative overflow-hidden">
         <div class="blob" style="width:260px;height:260px;background:var(--brand);top:-80px;right:-80px"></div>
-        <img src="./g1oeil-logo.png" alt="G1Oeil" class="relative z-10 max-h-72 w-auto mx-auto rounded-2xl" style="filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))">
+        <img src="./img/g1oeil-logo.png" alt="G1Oeil" class="relative z-10 max-h-72 w-auto mx-auto rounded-2xl" style="filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))">
       </div>
     </div>
+  </div>
+</section>
+
+<!-- CAROUSEL -->
+<section class="max-w-7xl mx-auto px-6 py-16">
+  <div class="reveal text-center mb-8">
+    <span class="tag">Aperçu de l'application</span>
+    <h2 class="display text-2xl md:text-3xl font-bold mt-3">G1Oeil en images</h2>
+  </div>
+  <div class="carousel reveal" id="carousel">
+    <div class="carousel-viewport" id="viewport">
+      <div class="carousel-track" id="track">
+        <div class="carousel-slide"><img src="./caroussel/g1oeil/Dashboard.png" alt="Dashboard"></div>
+        <div class="carousel-slide"><img src="./caroussel/g1oeil/Serveurs.png" alt="Inventaire serveurs"></div>
+        <div class="carousel-slide"><img src="./caroussel/g1oeil/Carte-serveur.png" alt="Carte serveur"></div>
+        <div class="carousel-slide"><img src="./caroussel/g1oeil/Capacity-Planning.png" alt="Capacity planning"></div>
+        <div class="carousel-slide"><img src="./caroussel/g1oeil/Journal-alertes.png" alt="Journal d'alertes"></div>
+        <div class="carousel-slide"><img src="./caroussel/g1oeil/Todolist.png" alt="TodoList & MEP"></div>
+      </div>
+    </div>
+    <button class="carousel-btn prev" id="prev" aria-label="Précédent">&#8249;</button>
+    <button class="carousel-btn next" id="next" aria-label="Suivant">&#8250;</button>
+    <div class="carousel-dots" id="dots"></div>
+    <p class="carousel-caption" id="caption"></p>
   </div>
 </section>
 
@@ -123,7 +147,7 @@
 <footer class="border-t border-white/10">
   <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
     <a href="index.html#home" class="flex items-center gap-3">
-      <img src="./hubyteck-logo.png" alt="Hubyteck" class="h-9 w-auto">
+      <img src="./img/hubyteck-logo.png" alt="Hubyteck" class="h-9 w-auto">
       <span class="display font-bold">Hubyteck</span>
     </a>
     <p class="text-sm text-[var(--muted)]">© 2025 Hubyteck. Tous droits réservés.</p>
@@ -135,6 +159,33 @@
   window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
   const io = new IntersectionObserver((e)=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Carrousel
+  (function(){
+    const track=document.getElementById('track'),dotsBox=document.getElementById('dots'),caption=document.getElementById('caption');
+    const slides=Array.from(track.children);
+    let idx=0,timer;
+    const captions=slides.map(s=>s.querySelector('img').alt);
+    dotsBox.innerHTML=slides.map((_,i)=>'<button class="carousel-dot'+(i===0?' active':'')+'" data-i="'+i+'" aria-label="Slide '+(i+1)+'"></button>').join('');
+    const dots=Array.from(dotsBox.children);
+    function go(n){
+      idx=(n+slides.length)%slides.length;
+      track.style.transform='translateX(-'+idx*100+'%)';
+      dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+      caption.textContent=captions[idx];
+    }
+    function next(){go(idx+1)} function prev(){go(idx-1)}
+    document.getElementById('next').onclick=next;
+    document.getElementById('prev').onclick=prev;
+    dots.forEach(d=>d.onclick=()=>{go(+d.dataset.i);reset()});
+    function play(){timer=setInterval(next,4500)}
+    function reset(){clearInterval(timer);play()}
+    const car=document.getElementById('carousel');
+    car.addEventListener('mouseenter',()=>clearInterval(timer));
+    car.addEventListener('mouseleave',play);
+    caption.textContent=captions[0];
+    play();
+  })();
 </script>
 </body>
 </html>
